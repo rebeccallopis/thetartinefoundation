@@ -75,7 +75,7 @@ codebase, or check these specifically:
 ## Deploying (Vercel)
 
 1. This repo lives on GitHub at
-   [rllopis1234/thetartinefoundation](https://github.com/rllopis1234/thetartinefoundation).
+   [rebeccallopis/thetartinefoundation](https://github.com/rebeccallopis/thetartinefoundation).
 2. Import it at [vercel.com/new](https://vercel.com/new) — pick that repo, and name the Vercel
    project `thetartinefoundation` to match (so it deploys to
    `thetartinefoundation.vercel.app`).
