@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* tARTine palette — derived from brand reference art */
+  --color-cream: #f8f3e8;
+  --color-cream-soft: #fdfbf5;
+  --color-coral: #f26f55;
+  --color-mustard: #f6b83f;
+  --color-teal: #56b9af;
+  --color-pink: #e9848f;
+  --color-jam: #b52d2d;
+  --color-toast: #6a3218;
+  --color-toast-dark: #3a1e13;
+  --color-blue: #1769c2;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-toast-dark);
+  --header-h: 4.5rem;
 }
 
 @theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-soft: var(--color-cream-soft);
+  --color-coral: var(--color-coral);
+  --color-mustard: var(--color-mustard);
+  --color-teal: var(--color-teal);
+  --color-pink: var(--color-pink);
+  --color-jam: var(--color-jam);
+  --color-toast: var(--color-toast);
+  --color-toast-dark: var(--color-toast-dark);
+  --color-blue: var(--color-blue);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-display: var(--font-baloo);
+  --font-body: var(--font-inter);
+
+  --animate-wiggle: wiggle 0.4s ease-in-out;
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-toast-dark);
+  color: var(--color-cream);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.75rem 0;
+  font-family: var(--font-display), sans-serif;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* subtle hand-drawn paper texture, used sparingly as a section backdrop.
+   Relies on the element already being positioned (e.g. via `sticky` or
+   `relative`) — setting position here would win the cascade over those
+   Tailwind utilities and silently break them. */
+.texture-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
